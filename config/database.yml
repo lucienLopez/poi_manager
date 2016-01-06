@@ -1,0 +1,10 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  hostname: 127.0.0.1
+  username: postgres
+
+development:
+  <<: *default
+  database: poi_manager
