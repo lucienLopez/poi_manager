@@ -3,4 +3,5 @@ class PointOfInterest < ActiveRecord::Base
   has_many :translations
   has_many :reviews
   has_many :point_of_interest_tag_links
+  has_many :tags, through: :point_of_interest_tag_links
 end

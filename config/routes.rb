@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  root 'point_of_interests#index'
+
+  resources :point_of_interests
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
