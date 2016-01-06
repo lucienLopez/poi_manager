@@ -19,6 +19,9 @@ group :production do
 end
 
 group :development do
+  # random data generation to populate db
+  gem 'faker', '~> 1.6', '>= 1.6.1'
+
   gem 'ruby-prof'
   gem 'byebug',platforms: [:mri, :rbx]
   gem 'rubocop'
