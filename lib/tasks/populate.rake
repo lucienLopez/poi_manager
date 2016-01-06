@@ -55,7 +55,7 @@ namespace :db do
       language = Language.order('Random()').first
       poi = PointOfInterest.order('Random()').first
 
-      Translation.create(language: language, point_of_interest: poi)
+      Translation.find_or_create_by(language: language, point_of_interest: poi)
     end
 
   end
