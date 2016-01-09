@@ -4,4 +4,12 @@ class PointOfInterest < ActiveRecord::Base
   has_many :reviews
   has_many :point_of_interest_tag_links
   has_many :tags, through: :point_of_interest_tag_links
+
+  def self.search(search)
+    if search && search != ''
+      where('default_name LIKE ?', "%#{search}%")
+    else
+      all
+    end
+  end
 end

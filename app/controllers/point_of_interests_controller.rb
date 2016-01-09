@@ -2,7 +2,8 @@ class PointOfInterestsController < ApplicationController
   before_action :set_point_of_interest, only: [:show, :edit, :update, :destroy]
 
   def index
-    @point_of_interests = PointOfInterest.order(:default_name).page params[:page]
+    @search = params[:search]
+    @point_of_interests = PointOfInterest.search(params[:search]).order(:default_name).page params[:page]
   end
 
 

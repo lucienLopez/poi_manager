@@ -1,0 +1,21 @@
+input[type=search] {
+    padding-left: 32px;
+    background-image: url('/images/icon_search.png');
+    background-repeat: no-repeat;
+    background-position: 9px center;
+    background-size: 14px;
+    width: 60%;
+
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+}
+input[type=search]:focus {
+    width: 100%;
+
+    /* We redeclare this to prevent foundation from ruining everything */
+    background-image: url('/images/icon_search.png');
+    background-position: 9px center;
+    background-repeat: no-repeat;
+    background-size: 14px;
+}
