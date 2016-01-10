@@ -1,0 +1,110 @@
+<%= form_for(@point_of_interest) do |f| %>
+    <% if @point_of_interest.errors.any? %>
+        <div class="row">
+          <div class="medium-12 columns">
+            <h2><%= pluralize(@point_of_interest.errors.count, "error") %> prohibited this point_of_interest from being saved:</h2>
+
+            <ul>
+              <% @point_of_interest.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+    <% end %>
+
+    <div class="row">
+      <div class="medium-12 columns">
+        <h2>
+          Details
+        </h2>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="medium-12 columns">
+        <label>Default name
+          <input type="text" name="point_of_interest[default_name]" value="<%= @point_of_interest.default_name %>">
+        </label>
+      </div>
+      <div class="medium-12 columns">
+        <label>City
+          <select name="point_of_interest[city_id]">
+            <% @cities.each do |city| %>
+                <option value="<%= city.id %>" <%= 'selected' if @point_of_interest.city == city %>>
+                  <%= city.name.try(:capitalize) %>
+                </option>
+            <% end %>
+          </select>
+        </label>
+      </div>
+      <div class="medium-12 columns">
+        <label>Address
+          <input type="text" name="point_of_interest[address]" value="<%= @point_of_interest.address %>">
+        </label>
+      </div>
+      <div class="medium-12 columns">
+        <label>latitude
+          <input type="number" step="any" name="point_of_interest[latitude]" value="<%= @point_of_interest.latitude %>">
+        </label>
+      </div>
+      <div class="medium-12 columns">
+        <label>longitude
+          <input type="number" step="any" name="point_of_interest[longitude]" value="<%= @point_of_interest.longitude %>">
+        </label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="medium-12 columns">
+        <h2>
+          Translations
+        </h2>
+      </div>
+    </div>
+
+    <% @languages .each do |language| %>
+        <input name="translations[][point_of_interest_id]" type="hidden" value="<%= @point_of_interest.id %>">
+        <input name="translations[][language_id]" type="hidden" value="<%= language[:id] %>">
+        <div class="row">
+          <div class="medium-4 columns">
+            <label>Language
+              <input disabled value="<%= language[:name].try(:capitalize) %>">
+            </label>
+          </div>
+          <div class="medium-8 columns">
+            <label>Translation
+              <input type="text" name="translations[][text]" value="<%= language[:translation] %>">
+            </label>
+          </div>
+        </div>
+    <% end %>
+
+
+    <div class="row">
+      <div class="medium-12 columns">
+        <h2>
+          tags
+        </h2>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="medium-12 columns">
+        <select multiple name="tags[]">
+          <% @tags.each do |tag| %>
+          <option value="<%= tag.id %>"  <%= 'selected' if @point_of_interest.tags.include? tag %>>
+            <%= tag.name.try(:capitalize) %>
+          </option>
+          <% end %>
+        </select>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="medium-12 columns">
+        <input type="submit" class="button small" value="Update">
+      </div>
+    </div>
+<% end %>

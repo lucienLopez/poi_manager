@@ -2,7 +2,7 @@ class CreatePointOfInterests < ActiveRecord::Migration
   def change
     create_table :point_of_interests do |t|
       t.string :default_name
-      t.string :adress
+      t.string :address
       t.decimal :latitude ,precision:10, scale:6
       t.decimal :longitude ,precision:10, scale:6
       t.decimal :rating, default:0, precision: 2, scale: 1

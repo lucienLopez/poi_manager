@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20160106213809) do
 
   create_table "point_of_interests", force: :cascade do |t|
     t.string   "default_name"
-    t.string   "adress"
+    t.string   "address"
     t.decimal  "latitude",     precision: 10, scale: 6
     t.decimal  "longitude",    precision: 10, scale: 6
     t.decimal  "rating",       precision: 2,  scale: 1, default: 0.0

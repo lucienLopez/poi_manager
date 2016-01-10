@@ -55,7 +55,9 @@ namespace :db do
       poi = PointOfInterest.order('Random()').first
       text = Faker::Lorem.word
 
-      Translation.find_or_create_by(language: language, point_of_interest: poi, text: text)
+      unless Translation.find(language: language, point_of_interest: poi)
+        Translation.create!(language: language, point_of_interest: poi, text: text)
+      end
     end
 
   end
