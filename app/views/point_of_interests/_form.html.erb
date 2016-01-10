@@ -82,9 +82,7 @@
 
     <div class="row">
       <div class="medium-12 columns">
-        <h2>
-          tags
-        </h2>
+        <h2>tags</h2>
       </div>
     </div>
 
@@ -92,14 +90,38 @@
       <div class="medium-12 columns">
         <select multiple name="tags[]">
           <% @tags.each do |tag| %>
-          <option value="<%= tag.id %>"  <%= 'selected' if @point_of_interest.tags.include? tag %>>
-            <%= tag.name.try(:capitalize) %>
-          </option>
+              <option value="<%= tag.id %>"  <%= 'selected' if @point_of_interest.tags.include? tag %>>
+                <%= tag.name.try(:capitalize) %>
+              </option>
           <% end %>
         </select>
       </div>
     </div>
 
+    <% if @point_of_interest.reviews.length > 0 %>
+        <div class="row">
+          <div class="medium-12 columns">
+            <h2>Reviews</h2>
+          </div>
+        </div>
+
+        <% @point_of_interest.reviews.each do |review| %>
+            <input type="hidden" name="reviews[][user_id]" value="<%= review.user.id %>"/>
+            <div class="row">
+              <div class="medium-4 columns">
+                <label>User
+                  <input type="text" disabled
+                         value="<%= "#{review.user.first_name.try(:capitalize)} #{review.user.last_name.try(:capitalize)}" %>"/>
+                </label>
+              </div>
+              <div class="medium-8 columns">
+                <label>Review
+                  <input type="text" name="reviews[][text]" value="<%= review.text %>"/>
+                </label>
+              </div>
+            </div>
+        <% end %>
+    <% end %>
 
     <div class="row">
       <div class="medium-12 columns">

@@ -34,6 +34,19 @@ class PointOfInterestsController < ApplicationController
         end
       end
 
+      params[:reviews].each do |review_hash|
+        if review_hash['text'] != ''
+          review = Review.find_or_create_by(user_id: review_hash['user_id'],
+                                            point_of_interest: @point_of_interest)
+          review.update(text: review_hash['text'])
+          review.save
+        else
+          review = Review.find_or_create_by(user_id: review_hash['user_id'],
+                                            point_of_interest: @point_of_interest)
+          review.delete if review
+        end
+      end
+
       @point_of_interest.tags = []
       params[:tags].each do |tag_id|
         @point_of_interest.tags << Tag.find(tag_id)
