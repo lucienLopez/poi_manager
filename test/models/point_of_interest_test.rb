@@ -1,7 +1,14 @@
 require 'test_helper'
 
 class PointOfInterestTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  eiffel_tower = PointOfInterest.find_by(default_name: 'Tour Eiffel')
+  test 'search' do
+    assert PointOfInterest.search('Eiffel').include?(eiffel_tower), 'Basic search'
+  end
+  test 'search_translation' do
+    assert PointOfInterest.search('tower').include?(eiffel_tower), 'Search in translations'
+  end
+  test 'search_case' do
+    assert PointOfInterest.search('EiFfeL').include?(eiffel_tower), 'Search not affected by case'
+  end
 end

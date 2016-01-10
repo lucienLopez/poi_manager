@@ -8,3 +8,7 @@ default: &default
 development:
   <<: *default
   database: poi_manager
+
+test:
+  <<: *default
+  database: poi_manager_test
