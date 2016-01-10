@@ -1,0 +1,97 @@
+<div class="row">
+  <div class="medium-12 columns">
+    <h1><%= @point_of_interest.default_name.try(:capitalize) %></h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="medium-12 columns">
+    <h2>Details</h2>
+  </div>
+</div>
+<div class="row">
+  <div class="medium-12 columns">
+    <table>
+      <tbody>
+      <tr>
+        <td>Default name</td>
+        <td><%= @point_of_interest.default_name.try(:capitalize) %></td>
+      </tr>
+      <tr>
+        <td>Adress</td>
+        <td><%= @point_of_interest.adress %></td>
+      </tr>
+      <tr>
+        <td>City</td>
+        <td><%= @point_of_interest.city.try(:name).try(:capitalize) %></td>
+      </tr>
+      <tr>
+        <td>latitude</td>
+        <td><%= @point_of_interest.latitude %></td>
+      </tr>
+      <tr>
+        <td>longitude</td>
+        <td><%= @point_of_interest.longitude %></td>
+      </tr>
+      <tr>
+        <td>rating</td>
+        <td><%= @point_of_interest.rating %></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="medium-12 columns">
+    <h2>translations</h2>
+  </div>
+</div>
+<div class="row">
+  <div class="medium-12 columns">
+    <table>
+      <thead>
+      <th>Language</th>
+      <th>Translation</th>
+      </thead>
+      <tbody>
+      <% @point_of_interest.translations.each do |translation| %>
+          <tr>
+            <td><%= translation.language.try(:name).try(:capitalize) %></td>
+            <td><%= translation.text %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="medium-12 columns">
+    <h2>Reviews</h2>
+  </div>
+</div>
+<div class="row">
+  <div class="medium-12 columns">
+    <table>
+      <thead>
+      <th>User</th>
+      <th>Review</th>
+      </thead>
+      <tbody>
+      <% @point_of_interest.reviews.each do |review| %>
+          <tr>
+            <td><%= "#{review.user.try(:first_name).try(:capitalize)} #{review.user.try(:first_name).try(:capitalize)}" %></td>
+            <td><%= review.text %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="medium-12 columns">
+    <a href="<%= edit_point_of_interest_path(@point_of_interest) %>" class="tiny button no_margin">edit</a>
+  </div>
+</div>

@@ -38,7 +38,6 @@ namespace :db do
     (0..200).each do
       Tag.create!(name: Faker::Company.buzzword)
     end
-
     (0..1500).each do
       poi = PointOfInterest.order('Random()').first
       tag = Tag.order('Random()').first
@@ -54,8 +53,9 @@ namespace :db do
     (0..1500).each do
       language = Language.order('Random()').first
       poi = PointOfInterest.order('Random()').first
+      text = Faker::Lorem.word
 
-      Translation.find_or_create_by(language: language, point_of_interest: poi)
+      Translation.find_or_create_by(language: language, point_of_interest: poi, text: text)
     end
 
   end
