@@ -3,8 +3,8 @@ Rails.application.routes.draw do
 
   resources :point_of_interests
   get 'tags', to: 'tags#index', as: :tags
-  get 'tags/:id/edit', to: 'tags#edit'
-  put 'tags/:id', to: 'tags#update', as: :tag
+  get 'tags/:id/edit', to: 'tags#edit', as: :edit_tag
+  patch 'tags/:id', to: 'tags#update', as: :tag
   delete 'tags/:id', to: 'tags#destroy'
 
   # The priority is based upon order of creation: first created -> highest priority.

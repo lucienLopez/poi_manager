@@ -1,0 +1,15 @@
+<%= form_for(@tag) do |f| %>
+    <div class="row">
+      <div class="medium-12 columns">
+        <label>Name
+          <input type="text" name="tag[name]" value="<%= @tag.name %>">
+        </label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="medium-12 columns">
+        <input type="submit" class="button small" value="Submit">
+      </div>
+    </div>
+<% end %>
