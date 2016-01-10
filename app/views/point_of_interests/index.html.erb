@@ -39,7 +39,7 @@
             <td><%= point_of_interest.reviews.count %></td>
             <td>
               <% point_of_interest.tags.each do |tag| %>
-                  <span class="tag"><%= tag.name %></span>
+                  <span class="label secondary"><%= tag.name.try(:capitalize) %></span>
               <% end %>
             </td>
             <td><%= l point_of_interest.created_at %></td>
