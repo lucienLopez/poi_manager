@@ -3,6 +3,7 @@ class PointOfInterestsController < ApplicationController
 
   def index
     @search = params[:search]
+    @point_of_interest_count = PointOfInterest.all.count
     @point_of_interests = PointOfInterest.search(params[:search]).order(:default_name).page params[:page]
   end
 
