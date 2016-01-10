@@ -7,7 +7,8 @@ class PointOfInterest < ActiveRecord::Base
 
   def self.search(search)
     if search && search != ''
-      where('default_name LIKE ?', "%#{search}%")
+      search.downcase!
+      joins(:translations).where('LOWER(default_name) LIKE ? OR LOWER(text) LIKE ?', "%#{search}%", "%#{search}%")
     else
       all
     end
