@@ -24,12 +24,12 @@ class PointOfInterestsController < ApplicationController
       params[:translations].each do |translation_hash|
         if translation_hash['text'] != ''
           translation = Translation.find_or_create_by(language_id: translation_hash['language_id'],
-                                                      point_of_interest_id: translation_hash['point_of_interest_id'])
+                                                      point_of_interest: @point_of_interest)
           translation.update(text: translation_hash['text'])
           translation.save
         else
           translation = Translation.find_by(language_id: translation_hash['language_id'],
-                                            point_of_interest_id: translation_hash['point_of_interest_id'])
+                                            point_of_interest: @point_of_interest)
           translation.delete if translation
         end
       end

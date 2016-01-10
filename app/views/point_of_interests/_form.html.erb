@@ -64,7 +64,6 @@
     </div>
 
     <% @languages .each do |language| %>
-        <input name="translations[][point_of_interest_id]" type="hidden" value="<%= @point_of_interest.id %>">
         <input name="translations[][language_id]" type="hidden" value="<%= language[:id] %>">
         <div class="row">
           <div class="medium-4 columns">
