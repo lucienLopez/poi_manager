@@ -2,7 +2,7 @@ require 'test_helper'
 
 class PointOfInterestsControllerTest < ActionController::TestCase
   setup do
-    @point_of_interest = point_of_interests(:one)
+    @point_of_interest = point_of_interests(:eiffel_tower)
   end
 
   test "should get index" do
@@ -18,7 +18,7 @@ class PointOfInterestsControllerTest < ActionController::TestCase
 
   test "should create point_of_interest" do
     assert_difference('PointOfInterest.count') do
-      post :create, point_of_interest: {  }
+      post :create, point_of_interest: { default_name: 'Buckingham Palace' }
     end
 
     assert_redirected_to point_of_interest_path(assigns(:point_of_interest))
@@ -35,7 +35,7 @@ class PointOfInterestsControllerTest < ActionController::TestCase
   end
 
   test "should update point_of_interest" do
-    patch :update, id: @point_of_interest, point_of_interest: {  }
+    patch :update, id: @point_of_interest, point_of_interest: { rating: 5 }
     assert_redirected_to point_of_interest_path(assigns(:point_of_interest))
   end
 
