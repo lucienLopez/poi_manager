@@ -19,3 +19,7 @@ input[type=search]:focus {
     background-repeat: no-repeat;
     background-size: 14px;
 }
+
+.usual_margin_bottom{
+    margin-bottom: 0.625rem;
+}

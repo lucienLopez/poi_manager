@@ -90,6 +90,21 @@
   </div>
 </div>
 
+
+<div class="row">
+  <div class="medium-12 columns">
+    <h2>Tags</h2>
+  </div>
+</div>
+
+<div class="row usual_margin_bottom">
+  <div class="medium-12 columns">
+    <% @point_of_interest.tags.each do |tag| %>
+        <span class="label secondary"><%= tag.name.try(:capitalize) %></span>
+    <% end %>
+  </div>
+</div>
+
 <div class="row">
   <div class="medium-12 columns">
     <a href="<%= edit_point_of_interest_path(@point_of_interest) %>" class="tiny button no_margin">edit</a>
