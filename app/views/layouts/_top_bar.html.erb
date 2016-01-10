@@ -1,0 +1,19 @@
+<nav class="top-bar" data-topbar role="navigation">
+  <ul class="title-area">
+    <li class="name">
+      <h1><a>POI management</a></h1>
+    </li>
+    <li class="toggle-topbar menu-icon"><a><span>Menu</span></a></li>
+  </ul>
+
+  <section class="top-bar-section">
+    <ul class="left">
+      <li <%= 'class=active' if params[:controller].to_sym == :point_of_interests %>>
+        <a href="<%= point_of_interest_path %>">Points of interest</a>
+      </li>
+      <li <%= 'class=active' if params[:controller].to_sym == :Tags %>>
+        <a href="<%= point_of_interest_path %>">tags</a>
+      </li>
+    </ul>
+  </section>
+</nav>

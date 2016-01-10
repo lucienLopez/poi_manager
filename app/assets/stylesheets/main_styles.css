@@ -1,3 +1,18 @@
+body {
+    background: -webkit-linear-gradient(45deg, #399E98 25%, #3aa19b 25%, #3aa19b 50%, #399E98 50%, #399E98 75%, #3aa19b 75%, #3aa19b);
+    background: -moz-linear-gradient(45deg, #399E98 25%, #3aa19b 25%, #3aa19b 50%, #399E98 50%, #399E98 75%, #3aa19b 75%, #3aa19b);
+    background: -o-linear-gradient(45deg, #399E98 25%, #3aa19b 25%, #3aa19b 50%, #399E98 50%, #399E98 75%, #3aa19b 75%, #3aa19b);
+    background: linear-gradient(45deg, #399E98 25%, #3aa19b 25%, #3aa19b 50%, #399E98 50%, #399E98 75%, #3aa19b 75%, #3aa19b);
+    background-size:100px 100px;
+}
+
+#page_content{
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    background-color: white;
+    padding: 1.25rem;
+}
+
 input[type=search] {
     padding-left: 32px;
     background-image: url('/images/icon_search.png');
@@ -21,5 +36,5 @@ input[type=search]:focus {
 }
 
 .usual_margin_bottom{
-    margin-bottom: 0.625rem;
+    margin-bottom: 0.625rem !important;
 }

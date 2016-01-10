@@ -13,8 +13,9 @@
   </head>
 
   <body>
-
+  <%= render partial: 'layouts/top_bar' %>
+  <div class="row" id="page_content">
     <%= yield %>
-
+  </div>
   </body>
 </html>
