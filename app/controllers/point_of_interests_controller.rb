@@ -14,7 +14,6 @@ class PointOfInterestsController < ApplicationController
 
   # GET /point_of_interests/1
   def show
-    set_point_of_interest
   end
 
   # PATCH/PUT /point_of_interests/1
@@ -66,8 +65,6 @@ class PointOfInterestsController < ApplicationController
 
   # GET /point_of_interests/1/edit
   def edit
-    set_point_of_interest
-
     @cities = City.all.order(:name)
     @tags = Tag.all.order(:name)
     languages = Language.all.order(:name)
@@ -139,18 +136,18 @@ class PointOfInterestsController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
-  def set_point_of_interest
-    @point_of_interest = PointOfInterest.find(params[:id])
-  end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_point_of_interest
+      @point_of_interest = PointOfInterest.find(params[:id])
+    end
 
-  # Only allow a trusted parameter "white list" through.
-  def point_of_interest_params
-    params.require(:point_of_interest).permit(:default_name, :city_id, :address, :latitude, :longitude)
-  end
+    # Only allow a trusted parameter "white list" through.
+    def point_of_interest_params
+      params.require(:point_of_interest).permit(:default_name, :city_id, :address, :latitude, :longitude)
+    end
 
-  # Only allow a trusted parameter "white list" through.
-  def translation_params
-    params.require(:translation).permit(:language_id, :text, :point_of_interest_id, :tags)
-  end
+    # Only allow a trusted parameter "white list" through.
+    def translation_params
+      params.require(:translation).permit(:language_id, :text, :point_of_interest_id, :tags)
+    end
 end

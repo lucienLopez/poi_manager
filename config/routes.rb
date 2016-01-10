@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   root 'point_of_interests#index'
 
   resources :point_of_interests
+  get 'tags', to: 'tags#index', as: :tags
+  get 'tags/:id/edit', to: 'tags#edit'
+  put 'tags/:id', to: 'tags#update'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
