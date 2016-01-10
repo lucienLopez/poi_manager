@@ -34,3 +34,10 @@ You can fill the database with random data if you want:
 ~~~sh
 bundle exec rake db:populate
 ~~~
+
+# Run tests #
+
+To run all tests, simply execute the following command:  
+~~~sh
+bundle exec rake test
+~~~
