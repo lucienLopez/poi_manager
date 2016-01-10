@@ -16,7 +16,16 @@
       <tr>
         <td><%= tag.name.try(:capitalize) %></td>
         <td><%= tag.point_of_interests.count %></td>
-        <td></td>
+        <td>
+          <ul class="button-group radius action_button">
+            <li>
+              <a href="<%= tag_path(tag) %>" data-confirm="Are you sure?"
+                 rel="nofollow" data-method="delete" class="tiny button alert action_button">
+                <img src="/images/icon_destroy.png"/>
+              </a>
+            </li>
+          </ul>
+        </td>
       </tr>
       <% end %>
       </tbody>
