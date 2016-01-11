@@ -11,4 +11,7 @@ class PointOfInterestTest < ActiveSupport::TestCase
   test 'search_case' do
     assert PointOfInterest.search('EiFfeL').include?(eiffel_tower), 'Search not affected by case'
   end
+  test 'search_tag' do
+    assert PointOfInterest.search('first_tag').include?(eiffel_tower), 'Search with tag'
+  end
 end
