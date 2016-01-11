@@ -7,22 +7,20 @@ class PointOfInterestsController < ApplicationController
     @point_of_interests = PointOfInterest.search(params[:search]).order(:default_name).page params[:page]
   end
 
-  # DELETE /point_of_interests/1
   def destroy
     @point_of_interest.destroy
     redirect_to point_of_interests_url, notice: 'Point of interest was successfully destroyed.'
   end
 
-  # GET /point_of_interests/1
   def show
   end
 
-  # PATCH/PUT /point_of_interests/1
   def update
     if @point_of_interest.update(point_of_interest_params)
 
       if params.has_key? :translation
         params[:translations].each do |translation_hash|
+          # If there is no text, we assume the user wanted to delete translation
           if translation_hash['text'] != ''
             translation = Translation.find_or_create_by(language_id: translation_hash['language_id'],
                                                         point_of_interest: @point_of_interest)
@@ -38,6 +36,7 @@ class PointOfInterestsController < ApplicationController
 
       if params.has_key? :reviews
         params[:reviews].each do |review_hash|
+          # If there is no text, we assume the user wanted to delete review
           if review_hash['text'] != ''
             review = Review.find_or_create_by(user_id: review_hash['user_id'],
                                               point_of_interest: @point_of_interest)
@@ -64,12 +63,12 @@ class PointOfInterestsController < ApplicationController
     end
   end
 
-  # GET /point_of_interests/1/edit
   def edit
     @cities = City.all.order(:name)
     @tags = Tag.all.order(:name)
     languages = Language.all.order(:name)
     @languages = []
+    # We'll display one line per language, with its translation if one is found
     languages.each do |language|
       language_hash = {
           name: language.name,
@@ -80,7 +79,6 @@ class PointOfInterestsController < ApplicationController
     end
   end
 
-  # GET /point_of_interests/new
   def new
     @point_of_interest = PointOfInterest.new
 
@@ -98,12 +96,10 @@ class PointOfInterestsController < ApplicationController
     end
   end
 
-  # POST /point_of_interests
   def create
     @point_of_interest = PointOfInterest.new(point_of_interest_params)
 
     if @point_of_interest.save
-
       if params.has_key? :translations
         params[:translations].each do |translation_hash|
           if translation_hash['text'] != ''
@@ -137,18 +133,12 @@ class PointOfInterestsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_point_of_interest
       @point_of_interest = PointOfInterest.find(params[:id])
     end
 
-    # Only allow a trusted parameter "white list" through.
+    # Only allow trusted parameters
     def point_of_interest_params
       params.require(:point_of_interest).permit(:default_name, :city_id, :address, :latitude, :longitude)
-    end
-
-    # Only allow a trusted parameter "white list" through.
-    def translation_params
-      params.require(:translation).permit(:language_id, :text, :point_of_interest_id, :tags)
     end
 end
