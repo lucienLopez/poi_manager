@@ -7,12 +7,13 @@ class PointOfInterest < ActiveRecord::Base
 
   def self.search(search)
     if search && search != ''
-      search.downcase!
+      search = "%#{search.downcase}%"
+      # left joins because a poi might not have translations or tags
       joins('LEFT JOIN translations ON translations.point_of_interest_id = point_of_interests.id '\
       'LEFT JOIN point_of_interest_tag_links ON point_of_interest_tag_links.point_of_interest_id = point_of_interests.id '\
       'LEFT JOIN tags ON tags.id = point_of_interest_tag_links.tag_id').
           where('LOWER(default_name) LIKE ? OR LOWER(translations.text) LIKE ? OR LOWER(tags.name) LIKE ?',
-                "%#{search}%", "%#{search}%", "%#{search}%")
+                search, search, search)
     else
       all
     end
